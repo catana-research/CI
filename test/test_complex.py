@@ -85,12 +85,12 @@ class TestComplex(unittest.TestCase):
     def test_div(self):
         """Test Complex division."""
         # Complex division
-        self.assertEqual(self.z1 / self.z2, pmath.Complex(0, 1))
-        self.assertEqual(self.z2 / self.z1, pmath.Complex(0, 1))
+        self.assertEqual(self.z1 / self.z2, pmath.Complex(0, 1), "z1/z2")
+        self.assertEqual(self.z2 / self.z1, pmath.Complex(0, -1), "z2/z1")
 
         # Complex and scalar division
-        self.assertEqual(self.z1 / 2., pmath.Complex(0.5, 1))
-        self.assertEqual(2. / self.z1, pmath.Complex(0, -1))
+        self.assertEqual(self.z1 / 2., pmath.Complex(0.5, 1), "z2/2")
+        self.assertEqual(2. / self.z1, pmath.Complex(0.4, -0.8), "2/z2")
 
     def test_eq(self):
         """Test Complex equality."""

@@ -115,12 +115,20 @@ class Complex(object):
             return Complex(self.real * other.real - self._imaginary * other.imaginary,
                            self.real * other.imaginary + other.real * self.imaginary)
         else:
-            return Complex(self.real * other,
-                           self.imaginary * other)
+            return Complex(self.real * other, self.imaginary * other)
+
     __rmul__ = __mul__
 
-    def __div__(self, other):
-        raise NotImplementedError("Not implemented.")
+    def __truediv__(self, other):
+        if type(other) is Complex:
+            product = self * other.conjugate()
+            magnitude2 = other.magnitude2().real
+            return Complex(product.real / magnitude2, product.imaginary / magnitude2)
+        else:
+            return Complex(self.real / other, self.imaginary / other)
+
+    def __rtruediv__(self, other):
+        return Complex(other, 0) / self
 
     # ------------------------------------------------------------------------------------------
     # I/O
