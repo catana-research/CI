@@ -2,25 +2,23 @@ import math
 
 
 class Complex(object):
-    """Complex number class.
 
-    Handles the creation and manipulation of complex numbers.
-
-    Example
-
-    TODO: - Documentation, Testing
+    """Class for the creation and manipulation of complex numbers.
 
     """
 
-    def __init__(self, real=0, imaginary=0):
-        """Constructor for the creation of a new Complex number.
+    def __init__(self, real=0., imaginary=0.):
+        """Constructor for the creation of a new complex number.
 
-        :param real float: Real component of the Complex number.
-        :param imaginary float: Imaginary component of the Complex number.
-        :return None: None.
+        Parameters
+        ----------
+        real : float
+            Real component of the complex number.
+        imaginary : float
+            Imaginary component of the complex number.
         """
-        self._real = real
-        self._imaginary = imaginary
+        self._real = float(real)
+        self._imaginary = float(imaginary)
         return None
 
     # ------------------------------------------------------------------------------------------
@@ -29,63 +27,57 @@ class Complex(object):
 
     @property
     def real(self):
-        """Gets the real component of the Complex number.
-
-        :return float: Real component of the Complex number.
+        """Provides access to the real component of the Complex number, :math:`Re(z)`.
         """
         return self._real
 
     @property
     def imaginary(self):
-        """Gets the imaginary component of the Complex number.
-
-        :return float: Imaginary component of the Complex number.
+        """Provides access to the imaginary component of the Complex number, :math:`Im(z)`.
         """
         return self._imaginary
 
     @real.setter
     def real(self, real):
-        """Sets the real component of the Complex number.
-
-        :param real: Specified new real value.
-        :return None: None
-        """
         self._real = real
         return None
 
     @imaginary.setter
     def imaginary(self, imaginary):
-        """Sets the imaginary component of the Complex number.
-
-        :param imaginary: Specified new imaginary value.
-        :return None: None.
-        """
         self._imaginary = imaginary
         return None
 
     # ------------------------------------------------------------------------------------------
     # Methods
     # ------------------------------------------------------------------------------------------
-
     def conjugate(self):
-        """
+        """Return the complex conjugate of a complex number :math:`z = a + bi`: :math:`z^{*} = a - bi`.
 
-        :return pmath.Complex:
+        Returns
+        -------
+        pmath.Complex
+            Complex conjugate of input complex number.
         """
         return Complex(self._real, -self._imaginary)
 
     def magnitude(self):
-        """Compute the magnitude of the complex number
+        """Compute the magnitude of the complex number: :math:`|z| = \sqrt{zz^{*}}`.
 
-        :return pmath.Complex: The magnitude of the complex number.
+        Returns
+        -------
+        pmath.Complex
+            The magnitude of the input complex number.
         """
         magnitude_squared = self.magnitude2()
         return Complex(math.sqrt(magnitude_squared.real), math.sqrt(magnitude_squared.imaginary))
 
     def magnitude2(self):
-        """Compute the square of the magnitude of the complex number.
+        """Compute the square of the magnitude of the complex number: :math:`|z|^{2} = zz^{*}`
 
-        :return pmath.Complex: Square of the magnitude of the complex number.
+        Returns
+        -------
+        pmath.Complex
+            The square of the magnitude of the input complex number.
         """
         return self * self.conjugate()
 
@@ -93,18 +85,9 @@ class Complex(object):
     # Operators
     # ------------------------------------------------------------------------------------------
     def __neg__(self):
-        """
-
-        :return:
-        """
         return Complex(-self.real, -self.imaginary)
 
     def __add__(self, other):
-        """
-
-        :param other:
-        :return:
-        """
         if type(other) is Complex:
             return Complex(self.real + other.real, self.imaginary + other.imaginary)
         else:
@@ -119,11 +102,6 @@ class Complex(object):
             return self.real == other and self.imaginary == 0
 
     def __sub__(self, other):
-        """Subtraction operator.
-
-        :param other:
-        :return pmath.Complex:
-        """
         if type(other) is Complex:
             return Complex(self.real - other.real, self.imaginary - other.imaginary)
         else:
