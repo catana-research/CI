@@ -104,6 +104,28 @@ class TestComplex(unittest.TestCase):
         self.assertNotEqual(self.z1, 1)
         self.assertNotEqual(1, self.z1)
 
+    def test_polar(self):
+        """Test polar coordinates."""
+        # Magnitude
+        self.assertEqual(self.z_imag.r, 1)
+        self.assertEqual(self.z_real.r, 1)
+
+        # Phase
+        self.assertEqual(self.z_imag.phi, math.pi/2.)
+        self.assertEqual(self.z_real.phi, 0.)
+
+    def test_sort(self):
+        """Test sorting of complex numbers."""
+        # Comparison
+        self.assertEqual(self.z1 < self.z2, True)
+        self.assertEqual(self.z2 < self.z1, False)
+        self.assertEqual(self.z_imag < self.z_real, True)
+        self.assertEqual(self.z_real < self.z_imag, False)
+
+        # Sort operation
+        self.assertEqual(sorted([self.z1, self.z2]),[self.z1, self.z2])
+        self.assertEqual(sorted([self.z2, self.z1]),[self.z1, self.z2])
+
     def test_io(self):
         """Test Complex I/O."""
         self.assertEqual(repr(self.z1), 'pmath.Complex(1.0, 2.0)')

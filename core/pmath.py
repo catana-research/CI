@@ -27,15 +27,26 @@ class Complex(object):
 
     @property
     def real(self):
-        """Provides access to the real component of the Complex number, :math:`Re(z)`.
-        """
+        """Provides access to the real component of the complex number, :math:`Re(z)`."""
         return self._real
 
     @property
     def imaginary(self):
-        """Provides access to the imaginary component of the Complex number, :math:`Im(z)`.
-        """
+        """Provides access to the imaginary component of the complex number, :math:`Im(z)`."""
         return self._imaginary
+
+    @property
+    def r(self):
+        """Provides access to the magnitude of the complex number in polar form, :math:`z = r\exp{i\phi}`."""
+        return self.magnitude().real
+
+    @property
+    def phi(self):
+        """Provides access to the phase (in radians) of the complex number in polar form, :math:`z = r\exp{i\phi}`."""
+        phi = 0.
+        if self.r > 0:
+            phi = math.acos(self.real/self.r)
+        return phi
 
     @real.setter
     def real(self, real):
@@ -129,6 +140,12 @@ class Complex(object):
 
     def __rtruediv__(self, other):
         return Complex(other, 0) / self
+
+    def __lt__(self, other):
+        if self.magnitude2().real == other.magnitude2().real:
+            return self.real < other.real  # Choose real component as discriminator for equal magnitudes
+        else:
+            return self.magnitude2().real < other.magnitude2().real
 
     # ------------------------------------------------------------------------------------------
     # I/O
