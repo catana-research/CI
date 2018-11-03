@@ -1,3 +1,4 @@
+import math
 
 
 class Complex(object):
@@ -12,10 +13,11 @@ class Complex(object):
     """
 
     def __init__(self, real=0, imaginary=0):
-        """Constructor for new complex number
+        """Constructor for the creation of a new Complex number.
 
-        :param real float: Real component.
-        :param imaginary float: Imaginary component.
+        :param real float: Real component of the Complex number.
+        :param imaginary float: Imaginary component of the Complex number.
+        :return None: None.
         """
         self._real = real
         self._imaginary = imaginary
@@ -27,36 +29,36 @@ class Complex(object):
 
     @property
     def real(self):
-        """
+        """Gets the real component of the Complex number.
 
-        :return:
+        :return float: Real component of the Complex number.
         """
         return self._real
 
     @property
     def imaginary(self):
-        """
+        """Gets the imaginary component of the Complex number.
 
-        :return:
+        :return float: Imaginary component of the Complex number.
         """
         return self._imaginary
 
     @real.setter
     def real(self, real):
-        """
+        """Sets the real component of the Complex number.
 
-        :param real:
-        :return:
+        :param real: Specified new real value.
+        :return None: None
         """
         self._real = real
         return None
 
     @imaginary.setter
     def imaginary(self, imaginary):
-        """
+        """Sets the imaginary component of the Complex number.
 
-        :param imaginary:
-        :return:
+        :param imaginary: Specified new imaginary value.
+        :return None: None.
         """
         self._imaginary = imaginary
         return None
@@ -68,14 +70,14 @@ class Complex(object):
     def conjugate(self):
         """
 
-        :return core.math.Complex:
+        :return pmath.Complex:
         """
         return Complex(self._real, -self._imaginary)
 
     def magnitude(self):
         """Compute the magnitude of the complex number
 
-        :return core.math.Complex: The magnitude of the complex number.
+        :return pmath.Complex: The magnitude of the complex number.
         """
         magnitude_squared = self.magnitude2()
         return Complex(math.sqrt(magnitude_squared.real), math.sqrt(magnitude_squared.imaginary))
@@ -83,7 +85,7 @@ class Complex(object):
     def magnitude2(self):
         """Compute the square of the magnitude of the complex number.
 
-        :return core.math.Complex: Square of the magnitude of the complex number.
+        :return pmath.Complex: Square of the magnitude of the complex number.
         """
         return self * self.conjugate()
 
@@ -111,18 +113,16 @@ class Complex(object):
     __radd__ = __add__
 
     def __eq__(self, other):
-        if type(self) is Complex and type(other) is Complex:
+        if type(other) is Complex:
             return self.real == other.real and self.imaginary == other.imaginary
-        elif type(self) is Complex:
-            return self.real == other and self.imaginary == 0
         else:
-            return other.real == self and other.imaginary == 0
+            return self.real == other and self.imaginary == 0
 
     def __sub__(self, other):
         """Subtraction operator.
 
         :param other:
-        :return core.math.Complex:
+        :return pmath.Complex:
         """
         if type(other) is Complex:
             return Complex(self.real - other.real, self.imaginary - other.imaginary)
@@ -130,10 +130,7 @@ class Complex(object):
             return Complex(self.real - other, self.imaginary)
 
     def __rsub__(self, other):
-        if type(other) is Complex:
-            return Complex(other.real - self.real, other.imaginary - self.imaginary)
-        else:
-            return Complex(other - self.real, -self.imaginary)
+        return Complex(other - self.real, -self.imaginary)
 
     def __mul__(self, other):
         if type(other) is Complex:
@@ -151,7 +148,7 @@ class Complex(object):
     # I/O
     # ------------------------------------------------------------------------------------------
     def __repr__(self):
-        return f"Complex({self.real}, {self.imaginary})"
+        return f"pmath.Complex({self.real}, {self.imaginary})"
 
     def __str__(self):
         return f"({self.real}, {self.imaginary})"
