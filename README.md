@@ -11,6 +11,8 @@ coverage html -d coverage_html
 
 ## Documentation
 
+Add .nojekyll to /docs
+
 Autodocumentation is provided by Sphinx, with the numpydoc plugin.
 
 Use the Makefile to build the docs, for bash:
