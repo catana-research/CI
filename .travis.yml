@@ -4,7 +4,7 @@ python:
 install:
   - pip install python-coveralls
 script:
-  - coverage run --source source cookiecutter setup.py test
+  - coverage run setup.py test
 branches:
   only:
     - master
