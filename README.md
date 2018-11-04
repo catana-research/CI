@@ -1,5 +1,7 @@
 # CI
 
+[![Build Status](https://travis-ci.org/catana-research/CI.svg?branch=master)](https://travis-ci.org/catana-research/CI)
+
 
 ## Coverage
 
