@@ -1,6 +1,8 @@
 # CI
 
 
+Demonstrates autoamted build and testing with Travis and code coverage with Coveralls. 
+
 ## Coverage
 
 Execute HTML report:
